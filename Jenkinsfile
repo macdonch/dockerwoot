@@ -18,14 +18,11 @@ node {
 
     stage('Install Docker') {
         /* install docker in the jenkins container */
-        dir ('/tmp') {
-            sh "curl -O  https://download.docker.com/linux/static/stable/x86_64/${dockerClient}"
-            sh "tar -xxf ${dockerClient}"
-            sh "mkdir -p /usr/local/bin"
-            sh "mv ./docker/docker /usr/local/bin"
-            sh "chmod +x /usr/local/bin/docker"
-            sh "rm -rf /tmp/*"
-        }
+        sh "curl -O  https://download.docker.com/linux/static/stable/x86_64/${dockerClient}"
+        sh "tar -xxf ${dockerClient}"
+        sh "mkdir -p /usr/local/bin"
+        sh "mv ./docker/docker /usr/local/bin"
+        sh "chmod +x /usr/local/bin/docker"
     }
 
     stage('Build image') {
