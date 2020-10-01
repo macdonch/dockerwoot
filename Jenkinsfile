@@ -21,7 +21,7 @@ node {
         sh "curl -O  https://download.docker.com/linux/static/stable/x86_64/${dockerClient}"
         sh "tar -xxf ${dockerClient}"
         sh "pwd"
-        sh 'PATH=$PATH:`pwd`'
+        sh 'PATH=$PATH:`pwd`/docker'
         sh 'echo $PATH'
         sh "chmod +x docker"
     }
