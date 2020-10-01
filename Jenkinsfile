@@ -19,7 +19,7 @@ node {
     stage('Install Docker') {
         /* install docker in the jenkins container */
         dir (/tmp) {
-            sh "curl -sSL -O  https://download.docker.com/linux/static/stable/x86_64/${dockerClient}"
+            sh "curl -O  https://download.docker.com/linux/static/stable/x86_64/${dockerClient}"
             sh "tar -xxf ${dockerClient}"
             sh "mkdir -p /usr/local/bin"
             sh "mv ./docker/docker /usr/local/bin"
