@@ -21,10 +21,10 @@ node {
         sh "curl -O  https://download.docker.com/linux/static/stable/x86_64/${dockerClient}"
         sh "tar -xxf ${dockerClient}"
         sh "pwd"
-        sh 'PATH=$PATH:`pwd`/docker/docker'
-        sh 'ls -al ./docker/docker'
+        sh 'PATH=$PATH:`pwd`/docker'
+        sh "chmod +x docker/docker"
+        sh 'ls -al ./docker'
         sh 'echo $PATH'
-        sh "chmod +x docker"
     }
 
     stage('Build image') {
