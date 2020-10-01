@@ -8,10 +8,24 @@ node {
 
     def app
 
+    def dockerClient = "docker-19.03.9.tgz"
+
     stage('Clone repository') {
         /* repository is defined in the Jenkins pipeline */
 
         checkout scm
+    }
+
+    stage('Install Docker') {
+        /* install docker in the jenkins container */
+        dir (/tmp) {
+            sh "curl -sSL -O  https://download.docker.com/linux/static/stable/x86_64/${dockerClient}"
+            sh "tar -xxf ${dockerClient}"
+            sh "mkdir -p /usr/local/bin"
+            sh "mv ./docker/docker /usr/local/bin"
+            sh "chmod +x /usr/local/bin/docker"
+            sh "rm -rf /tmp/*"
+        }
     }
 
     stage('Build image') {
@@ -20,12 +34,9 @@ node {
 
         /*  dockerfile is in the web directory of the repo */
 
-        /*
         dir ('web') {
             app = docker.build("dockerwoot/k8s-hello-onprem")
         }
-        */
-        app = docker.build("dockerwoot/k8s-hello-onprem")
 
     }
 
