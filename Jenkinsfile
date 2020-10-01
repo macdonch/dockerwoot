@@ -22,7 +22,7 @@ node {
         sh "tar -xxf ${dockerClient}"
         sh "chmod +x docker/docker"
         sh 'PATH=$PATH:`pwd`/docker'
-        sh 'export $PATH'
+        sh 'export PATH'
         sh 'echo $PATH'
         sh 'ls -al ./docker'
     }
