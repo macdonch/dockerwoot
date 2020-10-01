@@ -20,10 +20,9 @@ node {
         /* install docker in the jenkins container */
         sh "curl -O  https://download.docker.com/linux/static/stable/x86_64/${dockerClient}"
         sh "tar -xxf ${dockerClient}"
-        sh "whoami"
-        sh "su"
-        sh "mv ./docker/docker /usr/local/bin"
-        sh "chmod +x /usr/local/bin/docker"
+        sh "pwd"
+        sh "PATH=\$PATH:`pwd`"
+        sh "chmod +x docker"
     }
 
     stage('Build image') {
