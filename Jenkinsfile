@@ -19,9 +19,14 @@ node {
          * docker build on the command line */
 
         /*  dockerfile is in the web directory of the repo */
+
+        /*
         dir ('web') {
             app = docker.build("dockerwoot/k8s-hello-onprem")
         }
+        */
+        app = docker.build("dockerwoot/k8s-hello-onprem")
+
     }
 
     stage('Test image') {
