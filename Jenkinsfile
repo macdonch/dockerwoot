@@ -23,7 +23,7 @@ node {
         sh "chmod +x docker/docker"
         sh 'ls -al ./docker'
         sh 'ls -al ~'
-        sh './dockerd &'
+        sh './docker/dockerd &'
     }
 
     stage('Build image') {
