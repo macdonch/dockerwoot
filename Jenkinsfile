@@ -61,9 +61,9 @@ podTemplate(
                         dir ('web') {
                         /* docker.withRegistry('https://harbor.corp.sidclab/hybridcloud/dockerwoot', "${env.HARBOR_TOKEN}") { */
                             docker.withRegistry('', "${env.HUB_USER})/${env.HUB_TOKEN}" {
-                            app.push("latest")
+                                app.push("latest")
+                            }
                         }
-                    }
                     }
                 }
             }
