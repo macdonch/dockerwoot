@@ -23,7 +23,7 @@ node {
         sh "chmod +x docker/docker"
         sh 'ls -al ./docker'
         sh 'ls -al ~'
-        sh 'service docker start'
+        sh './dockerd &'
     }
 
     stage('Build image') {
