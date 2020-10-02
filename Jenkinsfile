@@ -30,16 +30,18 @@ podTemplate(
                 //container = the container label
                 container(‘docker’) {
                     // This is where we build the Docker image
-                    app = docker.build("dockerwoot/k8s-hello-onprem")
+                    sh 'docker build -t dockerwoot/k8s-hello-onprem ./web'
+                    sh 'docker ps'
                 }
             }
 
             stage('Test image') {
-                /* Pretend to have a test */
+                /* Pretend to have a test 
 
                 app.inside {
                     sh 'echo "Tests passed"'
                 }
+                */
             }
 
             stage('Push image') {
@@ -50,11 +52,12 @@ podTemplate(
                     withVault([configuration: configuration, vaultSecrets: secrets]) {
                     sh "echo ${env.HARBOR_TOKEN}"
                     }
-
+                /*
                     docker.withRegistry('https://harbor.corp.sidclab', ${env.HARBOR_TOKEN}) {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
+                */
                 }
             }
         }
