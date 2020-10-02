@@ -41,12 +41,12 @@ podTemplate(
             }
 
             stage('Test image') {
-                /* Pretend to have a test 
+                /* Pretend to have a test */
 
                 app.inside {
                     sh 'echo "Tests passed"'
                 }
-                */
+
             }
 
             stage('Push image') {
@@ -61,7 +61,7 @@ podTemplate(
                     }
 
                     dir ('web') {
-                        docker.withRegistry('https://harbor.corp.sidclab/', "${env.HARBOR_TOKEN}") {
+                        docker.withRegistry('https://harbor.corp.sidclab/hybridbuild/dockerwoot', "${env.HARBOR_TOKEN}") {
                             app.push("latest")
                         }
                     }
