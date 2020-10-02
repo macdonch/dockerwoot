@@ -63,7 +63,8 @@ podTemplate(
                     }
 
                     dir ('web') {
-                        docker.withRegistry('https://harbor.corp.sidclab/hybridbuild/dockerwoot', "${env.HARBOR_TOKEN}") {
+                        /* docker.withRegistry('https://harbor.corp.sidclab/hybridbuild/dockerwoot', "${env.HARBOR_TOKEN}") { */
+                        docker.withRegistry('https://harbor.corp.sidclab/hybridbuild/dockerwoot') {
                             app.push("latest")
                         }
                     }
