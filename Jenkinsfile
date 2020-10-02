@@ -54,13 +54,16 @@ podTemplate(
                 * First, the incremental build number from Jenkins
                 * Second, the 'latest' tag. */
 
-                withVault([configuration: configuration, vaultSecrets: secrets]) {
-                    sh 'echo ${env.HARBOR_TOKEN}'
-                }
+                container('docker') {
 
-                dir ('web') {
-                    docker.withRegistry('https://harbor.corp.sidclab', ${env.HARBOR_TOKEN}) {
-                        app.push("latest")
+                    withVault([configuration: configuration, vaultSecrets: secrets]) {
+                        sh "echo ${env.HARBOR_TOKEN}"
+                    }
+
+                    dir ('web') {
+                        docker.withRegistry('https://harbor.corp.sidclab', ${env.HARBOR_TOKEN}) {
+                            app.push("latest")
+                        }
                     }
                 }
 
