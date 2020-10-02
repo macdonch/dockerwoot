@@ -35,7 +35,7 @@ podTemplate(
                     sh 'docker ps'
                     */
                     dir('web') {
-                        sh 'easy_install pip'
+                        sh 'apk add --update py-pip'
                         app = docker.build("dockerwoot/k8s-hello-onprem")
                         docker ps
                     }
