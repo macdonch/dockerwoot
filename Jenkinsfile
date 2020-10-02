@@ -12,9 +12,9 @@ podTemplate(
         //node = the pod label
         node('docker-on-docker') {
             def secrets = [
-                [path: 'secret/jenkins/harbor', engineVersion: 2, secretValues: [
-                [envVar: 'HARBOR_USER', vaultKey: 'user'],
-                [envVar: 'HARBOR_TOKEN', vaultKey: 'password']]],
+                [path: 'secret/jenkins/leibniz9999', engineVersion: 2, secretValues: [
+                [envVar: 'HUB_USER', vaultKey: 'username'],
+                [envVar: 'HUB_TOKEN', vaultKey: 'password']]],
             ]
             def configuration = [vaultUrl: 'http://vault.corp.sidclab',  vaultCredentialId: 'vault-approle', engineVersion: 2]
 
@@ -58,14 +58,12 @@ podTemplate(
                 container('docker') {
 
                     withVault([configuration: configuration, vaultSecrets: secrets]) {
-                        sh "echo ${env.HARBOR_TOKEN}"
-                    }
-
-                    dir ('web') {
+                        dir ('web') {
                         /* docker.withRegistry('https://harbor.corp.sidclab/hybridcloud/dockerwoot', "${env.HARBOR_TOKEN}") { */
-                        docker.withRegistry('', registryCredential) {
+                            docker.withRegistry('', "${env.HUB_USER})/${env.HUB_TOKEN}" {
                             app.push("latest")
                         }
+                    }
                     }
                 }
             }
