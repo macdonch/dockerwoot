@@ -34,7 +34,8 @@ node {
         /*  dockerfile is in the web directory of the repo */
 
         dir ('web') {
-            app = 'sh docker build -t dockerwoot/k8s-hello-onprem .'
+            sh 'docker build -t dockerwoot/k8s-hello-onprem .'
+            sh 'docker ps'
         }
 
     }
@@ -42,15 +43,22 @@ node {
     stage('Test image') {
         /* Pretend to have a test */
 
+        /*
         app.inside {
             sh 'echo "Tests passed"'
         }
+        */
+
+        sh 'echo "Tests passed"'
+
     }
 
+    /*
     stage('Push image') {
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins
-         * Second, the 'latest' tag. */
+         * Second, the 'latest' tag. 
+         
         steps {
             withVault([configuration: configuration, vaultSecrets: secrets]) {
             sh "echo ${env.HARBOR_TOKEN}"
@@ -62,4 +70,5 @@ node {
             }
         }
     }
+    */
 }
