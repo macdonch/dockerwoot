@@ -32,9 +32,9 @@ node {
         sh 'export PATH'
         sh 'echo $PATH'
         /*  dockerfile is in the web directory of the repo */
-        
+
         dir ('web') {
-            app = docker.build("dockerwoot/k8s-hello-onprem")
+            app = 'sh docker build -t dockerwoot/k8s-hello-onprem .'
         }
 
     }
