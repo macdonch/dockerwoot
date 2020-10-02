@@ -31,11 +31,13 @@ node {
         sh 'PATH=$PATH:`pwd`/docker'
         sh 'export PATH'
         sh 'echo $PATH'
-        /*  dockerfile is in the web directory of the repo */
+        /*  dockerfile is in the web directory of the repo 
 
-        dir ('web') {
-            sh 'docker build -t dockerwoot/k8s-hello-onprem .'
-            sh 'docker ps'
+        sh 'docker build -t dockerwoot/k8s-hello-onprem .' */
+
+        dir ('docker') {
+            sh './docker build -t dockerwoot/k8s-hello-onprem ../web/.'
+            sh './docker ps'
         }
 
     }
