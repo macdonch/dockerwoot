@@ -42,11 +42,11 @@ podTemplate(
 
             stage('Test image') {
                 /* Pretend to have a test */
-
-                app.inside {
-                    sh 'echo "Tests passed"'
+                container('docker') {
+                    app.inside {
+                        sh 'echo "Tests passed"'
+                    }
                 }
-
             }
 
             stage('Push image') {
