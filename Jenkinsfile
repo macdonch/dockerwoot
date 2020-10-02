@@ -21,9 +21,6 @@ node {
         sh "curl -O  https://download.docker.com/linux/static/stable/x86_64/${dockerClient}"
         sh "tar -xxf ${dockerClient}"
         sh "chmod +x docker/docker"
-        sh 'PATH=$PATH:`pwd`/docker'
-        sh 'export PATH'
-        sh 'echo $PATH'
         sh 'ls -al ./docker'
     }
 
@@ -31,8 +28,11 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
+        sh 'PATH=$PATH:`pwd`/docker'
+        sh 'export PATH'
+        sh 'echo $PATH'
         /*  dockerfile is in the web directory of the repo */
-
+        
         dir ('web') {
             app = docker.build("dockerwoot/k8s-hello-onprem")
         }
