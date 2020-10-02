@@ -32,7 +32,7 @@ podTemplate(
                     // This is where we build the Docker image
 
                     dir('web') {
-                        app = docker.build("dockerwoot/k8s-hello-onprem")
+                        app = docker.build("leibniz9999/dockerwoot")
                     }
                 }
             }
