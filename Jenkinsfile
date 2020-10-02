@@ -61,7 +61,7 @@ podTemplate(
                     }
 
                     dir ('web') {
-                        docker.withRegistry('https://harbor.corp.sidclab', ${env.HARBOR_TOKEN}) {
+                        docker.withRegistry('https://harbor.corp.sidclab', "${env.HARBOR_TOKEN}") {
                             app.push("latest")
                         }
                     }
