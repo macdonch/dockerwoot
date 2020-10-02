@@ -30,14 +30,6 @@ podTemplate(
                 //container = the container label
                 container('docker') {
                     // This is where we build the Docker image
-                    /*
-                    sh 'docker build -t dockerwoot/k8s-hello-onprem ./web'
-                    sh 'docker ps'
-                    */
-                    sh 'mkdir -p /etc/docker'
-                    sh '''echo '{"insecure-registries" : [ "harbor.corp.sidclab:443" ]}' > /etc/docker/daemon.json'''
-                    sh 'apk add openrc --no-cache'
-                    sh 'service docker start'
 
                     dir('web') {
                         app = docker.build("dockerwoot/k8s-hello-onprem")
@@ -68,8 +60,8 @@ podTemplate(
                     }
 
                     dir ('web') {
-                        /* docker.withRegistry('https://harbor.corp.sidclab/hybridbuild/dockerwoot', "${env.HARBOR_TOKEN}") { */
-                        docker.withRegistry('https://harbor.corp.sidclab/hybridbuild/dockerwoot') {
+                        /* docker.withRegistry('https://harbor.corp.sidclab/leinbiz9999/dockerwoot', "${env.HARBOR_TOKEN}") { */
+                        docker.withRegistry('https://hub.docker.com/repository/docker/leibniz9999/dockerwoot') {
                             app.push("latest")
                         }
                     }
