@@ -22,8 +22,8 @@ node {
         sh "tar -xxf ${dockerClient}"
         sh "chmod +x docker/docker"
         sh 'ls -al ./docker'
-        sh 'systemctl start docker'
         sh 'cat ~.bashrc'
+        sh 'service docker start'
     }
 
     stage('Build image') {
