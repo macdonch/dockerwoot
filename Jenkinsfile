@@ -7,7 +7,7 @@ podTemplate(
     volumes: [
         hostPathVolume(mountPath: '/var/run/docker.sock',
         hostPath: '/var/run/docker.sock',
-    ],
+    )],
     {
         //node = the pod label
         node('docker-on-docker') {
