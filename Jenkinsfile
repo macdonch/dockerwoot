@@ -36,7 +36,6 @@ podTemplate(
                     */
                     dir('web') {
                         app = docker.build("dockerwoot/k8s-hello-onprem")
-                        docker ps
                     }
                 }
             }
@@ -59,9 +58,10 @@ podTemplate(
                 sh "echo ${env.HARBOR_TOKEN}"
                 }
 
-                docker.withRegistry('https://harbor.corp.sidclab', ${env.HARBOR_TOKEN}) {
-                    app.push("${env.BUILD_NUMBER}")
-                    app.push("latest")
+                dir ('web') {
+                    docker.withRegistry('https://harbor.corp.sidclab', ${env.HARBOR_TOKEN}) {
+                        app.push("latest")
+                    }
                 }
 
             }
