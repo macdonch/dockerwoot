@@ -32,7 +32,7 @@ podTemplate(
                     // This is where we build the Docker image
 
                     dir('web') {
-                        app = docker.build("leibniz9999/dockerwoot")
+                        app = docker.build("dockerwoot/k8s-hello-onprem")
                     }
                 }
             }
@@ -61,11 +61,9 @@ podTemplate(
 
                     dir ('web') {
                         /* docker.withRegistry('https://harbor.corp.sidclab/hybridcloud/dockerwoot', "${env.HARBOR_TOKEN}") { */
-                            app.push("latest")
-                        }
+                        app.push("latest")
                     }
                 }
-
             }
         }
     }
