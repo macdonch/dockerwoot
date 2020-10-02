@@ -61,7 +61,7 @@ podTemplate(
 
                     dir ('web') {
                         /* docker.withRegistry('https://harbor.corp.sidclab/leinbiz9999/dockerwoot', "${env.HARBOR_TOKEN}") { */
-                        docker.withRegistry('https://hub.docker.com/repository/docker/leibniz9999/dockerwoot') {
+                        docker.withRegistry('https://hub.docker.com/repository/docker/leibniz9999') {
                             app.push("latest")
                         }
                     }
