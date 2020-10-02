@@ -55,7 +55,7 @@ podTemplate(
                 * Second, the 'latest' tag. */
 
                 withVault([configuration: configuration, vaultSecrets: secrets]) {
-                sh "echo ${env.HARBOR_TOKEN}"
+                    sh 'echo ${env.HARBOR_TOKEN}'
                 }
 
                 dir ('web') {
