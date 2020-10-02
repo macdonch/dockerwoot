@@ -36,7 +36,8 @@ podTemplate(
                     */
                     sh 'mkdir -p /etc/docker'
                     sh '''echo '{"insecure-registries" : [ "harbor.corp.sidclab:443" ]}' > /etc/docker/daemon.json'''
-                    sh 'systemctl restart docker'
+                    sh 'apk add openrc --no-cache'
+                    sh 'service docker start'
 
                     dir('web') {
                         app = docker.build("dockerwoot/k8s-hello-onprem")
