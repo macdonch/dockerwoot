@@ -20,7 +20,7 @@ podTemplate(
 
             def app
 
-            def registryCredential = 'leibniz_id'
+            def registryCredential = 'leibniz9999_id'
 
             stage('Clone repository') {
                 /* repository is defined in the Jenkins pipeline */
