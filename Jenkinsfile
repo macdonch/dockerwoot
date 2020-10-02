@@ -34,7 +34,10 @@ podTemplate(
                     sh 'docker build -t dockerwoot/k8s-hello-onprem ./web'
                     sh 'docker ps'
                     */
-                    app = docker.build("dockerwoot/k8s-hello-onprem")
+                    dir('web') {
+                        app = docker.build("dockerwoot/k8s-hello-onprem")
+                        docker ps
+                    }
                 }
             }
 
