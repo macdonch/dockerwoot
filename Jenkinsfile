@@ -34,7 +34,7 @@ podTemplate(
                     sh 'docker build -t dockerwoot/k8s-hello-onprem ./web'
                     sh 'docker ps'
                     */
-                    sh echo '''echo '{"insecure-registries" : [ "harbor.corp.sidclab:443" ]}' > /etc/docker/daemon.json'''
+                    sh '''echo '{"insecure-registries" : [ "harbor.corp.sidclab:443" ]}' > /etc/docker/daemon.json'''
                     sh 'rc-service dockerd restart'
 
                     dir('web') {
