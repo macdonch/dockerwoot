@@ -20,6 +20,8 @@ podTemplate(
 
             def app
 
+            def registryCredential = 'leibniz_id'
+
             stage('Clone repository') {
                 /* repository is defined in the Jenkins pipeline */
 
@@ -61,7 +63,9 @@ podTemplate(
 
                     dir ('web') {
                         /* docker.withRegistry('https://harbor.corp.sidclab/hybridcloud/dockerwoot', "${env.HARBOR_TOKEN}") { */
-                        app.push("latest")
+                        docker.withRegistry('', registryCredential) {
+                            app.push("latest")
+                        }
                     }
                 }
             }
