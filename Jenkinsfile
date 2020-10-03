@@ -58,17 +58,16 @@ podTemplate(
                 container('docker') {
 
                     withVault([configuration: configuration, vaultSecrets: secrets]) {
-                        sh "echo ${env.HARBOR_TOKEN}"
-                    }
-
-                    dir ('web') {
+                        dir ('web') {
                         /* docker.withRegistry('https://harbor.corp.sidclab/hybridcloud/dockerwoot', "${env.HARBOR_TOKEN}") { 
                         docker.withRegistry('', registryCredential) {
                             app.push("latest")
                         } */
 
-                        sh "docker login -u ${env.HARBOR_USER} -p ${env.HARBOR_TOKEN} && docker push harbor.corp.sidclab/hybridbuild/dockerwoot:latest"
+                            sh "${env.HARBOR_TOKEN}| docker login --user ${env.HARBOR_USER} --password-stdin  && docker push harbor.corp.sidclab/hybridbuild/dockerwoot:latest"
+                        }
                     }
+
                 }
             }
         }
