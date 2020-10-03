@@ -64,7 +64,7 @@ podTemplate(
                             app.push("latest")
                         } */
 
-                            sh "${env.HARBOR_TOKEN} | docker login --username '${env.HARBOR_USER}' --password-stdin  && docker push harbor.corp.sidclab/hybridbuild/dockerwoot:latest"
+                            sh "docker login --username '${env.HARBOR_USER}' --password '${env.HARBOR_TOKEN}'  && docker push harbor.corp.sidclab/hybridbuild/dockerwoot:latest"
                         }
                     }
 
