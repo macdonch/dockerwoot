@@ -57,16 +57,18 @@ podTemplate(
 
                 container('docker') {
 
+                    docker.withRegistry('', registryCredential) {
+                        app.push("latest")
+                    }
+
+                    /* can't use an insecure registry, so this doesn't work  with harbor and a self-signed cert
                     withVault([configuration: configuration, vaultSecrets: secrets]) {
                         dir ('web') {
-                        /* docker.withRegistry('https://harbor.corp.sidclab/hybridcloud/dockerwoot', "${env.HARBOR_TOKEN}") { 
-                        docker.withRegistry('', registryCredential) {
-                            app.push("latest")
-                        } */
 
                             sh "docker login --username '${env.HARBOR_USER}' --password ${env.HARBOR_TOKEN} harbor.corp.sidclab && docker push harbor.corp.sidclab/hybridbuild/dockerwoot:latest"
                         }
                     }
+                    */
 
                 }
             }
