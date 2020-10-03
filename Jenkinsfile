@@ -62,10 +62,12 @@ podTemplate(
                     }
 
                     dir ('web') {
-                        /* docker.withRegistry('https://harbor.corp.sidclab/hybridcloud/dockerwoot', "${env.HARBOR_TOKEN}") { */
+                        /* docker.withRegistry('https://harbor.corp.sidclab/hybridcloud/dockerwoot', "${env.HARBOR_TOKEN}") { 
                         docker.withRegistry('', registryCredential) {
                             app.push("latest")
-                        }
+                        } */
+
+                        sh "docker login -u ${env.HARBOR_USER} -p ${env.HARBOR_TOKEN} && docker push harbor.corp.sidclab/hybridbuild/dockerwoot:latest"
                     }
                 }
             }
