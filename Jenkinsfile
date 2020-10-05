@@ -1,8 +1,8 @@
 podTemplate(
-    name: 'jenkins-dockerzz',
-    label: 'jenkins-dockerzz',
+    name: 'jenkins-docker',
+    label: 'jenkins-docker',
     containers: [
-        containerTemplate(name: 'dockerzz', image:'leibniz9999/jenkins-docker-client-sidclab'),
+        containerTemplate(name: 'docker', image:'leibniz9999/jenkins-docker-client-sidc-lab'),
     ],
     volumes: [
         hostPathVolume(mountPath: '/var/run/docker.sock',
@@ -10,7 +10,7 @@ podTemplate(
     ],
     {
         //node = the pod label
-        node('jenkins-dockerzz') {
+        node('jenkins-docker') {
             def secrets = [
                 [path: 'secret/jenkins/harbor', engineVersion: 2, secretValues: [
                 [envVar: 'HARBOR_USER', vaultKey: 'user'],
@@ -30,7 +30,7 @@ podTemplate(
 
             stage('Build Docker Image') {
                 //container = the container label
-                container('dockerzz') {
+                container('docker') {
                     // This is where we build the Docker image
 
                     dir('web') {
@@ -55,7 +55,7 @@ podTemplate(
                 * First, the incremental build number from Jenkins
                 * Second, the 'latest' tag. */
 
-                container('dockerzz') {
+                container('docker') {
                     /*
                     docker.withRegistry('', registryCredential) {
                         app.push("latest")
