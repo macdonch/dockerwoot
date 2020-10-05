@@ -1,6 +1,6 @@
 podTemplate(
-    name: 'jenkins-docker',
-    label: 'jenkins-docker',
+    name: 'jenkins-dockeraaa',
+    label: 'jenkins-dockeraaa',
     containers: [
         containerTemplate(name: 'docker', image:'leibniz9999/jenkins-docker-client-sidc-lab'),
     ],
@@ -10,7 +10,7 @@ podTemplate(
     ],
     {
         //node = the pod label
-        node('jenkins-docker') {
+        node('jenkins-dockeraaa') {
             def secrets = [
                 [path: 'secret/jenkins/harbor', engineVersion: 2, secretValues: [
                 [envVar: 'HARBOR_USER', vaultKey: 'user'],
