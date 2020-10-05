@@ -2,7 +2,7 @@ podTemplate(
     name: 'jenkins-docker',
     label: 'jenkins-docker',
     containers: [
-        containerTemplate(name: 'jenkins-docker', image:'leibniz9999/jenkins-docker-client-lab'),
+        containerTemplate(name: 'docker', image:'leibniz9999/jenkins-docker-client-lab'),
     ],
     volumes: [
         hostPathVolume(mountPath: '/var/run/docker.sock',
