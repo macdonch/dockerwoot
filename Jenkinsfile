@@ -1,8 +1,8 @@
 podTemplate(
-    name: 'docker-on-docker2',
-    label: 'docker-on-docker2',
+    name: 'jenkins-docker',
+    label: 'jenkins-docker',
     containers: [
-        containerTemplate(name: 'docker', image:'leibniz9999/jenkins-docker-client-lab'),
+        containerTemplate(name: 'jenkins-docker', image:'leibniz9999/jenkins-docker-client-lab'),
     ],
     volumes: [
         hostPathVolume(mountPath: '/var/run/docker.sock',
@@ -10,7 +10,7 @@ podTemplate(
     ],
     {
         //node = the pod label
-        node('docker-on-docker2') {
+        node('jenkins-docker') {
             def secrets = [
                 [path: 'secret/jenkins/harbor', engineVersion: 2, secretValues: [
                 [envVar: 'HARBOR_USER', vaultKey: 'user'],
