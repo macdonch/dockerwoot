@@ -1,6 +1,6 @@
 podTemplate(
-    name: 'docker-on-docker',
-    label: 'docker-on-docker',
+    name: 'docker-on-docker2',
+    label: 'docker-on-docker2',
     containers: [
         containerTemplate(name: 'docker', image:'leibniz9999/jenkins-docker-client-lab'),
     ],
