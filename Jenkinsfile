@@ -2,7 +2,7 @@ podTemplate(
     name: 'docker-on-docker',
     label: 'docker-on-docker',
     containers: [
-        containerTemplate(name: 'docker', image:'trion/jenkins-docker-client'),
+        containerTemplate(name: 'docker', image:'leibniz9999/jenkins-docker-client-lab'),
     ],
     volumes: [
         hostPathVolume(mountPath: '/var/run/docker.sock',
@@ -56,19 +56,21 @@ podTemplate(
                 * Second, the 'latest' tag. */
 
                 container('docker') {
-
+                    /*
                     docker.withRegistry('', registryCredential) {
                         app.push("latest")
                     }
+                    */
 
-                    /* can't use an insecure registry, so this doesn't work  with harbor and a self-signed cert
+                    /* can't use an insecure registry, so this doesn't work  with harbor and a self-signed cert */
+                    /* custom image has insecure harbor added */
                     withVault([configuration: configuration, vaultSecrets: secrets]) {
                         dir ('web') {
 
                             sh "docker login --username '${env.HARBOR_USER}' --password ${env.HARBOR_TOKEN} harbor.corp.sidclab && docker push harbor.corp.sidclab/hybridbuild/dockerwoot:latest"
                         }
                     }
-                    */
+
 
                 }
             }
