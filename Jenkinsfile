@@ -10,7 +10,7 @@ podTemplate(
     ],
     {
         //node = the pod label
-        node('docker-on-docker') {
+        node('docker-on-docker2') {
             def secrets = [
                 [path: 'secret/jenkins/harbor', engineVersion: 2, secretValues: [
                 [envVar: 'HARBOR_USER', vaultKey: 'user'],
