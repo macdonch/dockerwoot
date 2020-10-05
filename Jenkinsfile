@@ -1,6 +1,7 @@
 podTemplate(
     name: 'jenkins-dockerz',
     label: 'jenkins-dockerz',
+    imagePullPolicy: "Always",
     containers: [
         containerTemplate(name: 'dockerz', image:'leibniz9999/jenkins-docker-client-lab:12', alwaysPullImage: true),
     ],
