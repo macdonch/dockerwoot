@@ -2,7 +2,7 @@ podTemplate(
     name: 'jenkins-docker',
     label: 'jenkins-docker',
     containers: [
-        containerTemplate(name: 'docker', image:'leibniz9999/jenkins-docker-client-lab'),
+        containerTemplate(name: 'dockerx', image:'leibniz9999/jenkins-docker-client-lab'),
     ],
     volumes: [
         hostPathVolume(mountPath: '/var/run/docker.sock',
@@ -30,7 +30,7 @@ podTemplate(
 
             stage('Build Docker Image') {
                 //container = the container label
-                container('docker') {
+                container('dockerx') {
                     // This is where we build the Docker image
 
                     dir('web') {
@@ -55,7 +55,7 @@ podTemplate(
                 * First, the incremental build number from Jenkins
                 * Second, the 'latest' tag. */
 
-                container('docker') {
+                container('dockerx') {
                     /*
                     docker.withRegistry('', registryCredential) {
                         app.push("latest")
