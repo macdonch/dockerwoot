@@ -1,3 +1,3 @@
 # dockerwoot
 
-This repository contains a sample flask application built on docker. The app is a static webpage that displays a .gif and the text "This is on-prem!"
+This repository contains a sample flask application built on docker. The app contains static webpage that displays the  dockerhost IP address and a .gif"
